@@ -6,10 +6,7 @@ import { MessagesService } from './messages.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
-const Emty_hero: Hero = {
-  id: 0,
-  name: "",
-}
+const Emty_hero: Hero = null;
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +25,7 @@ export class HeroService {
     //this.messagesService.add('HeroService: fetched heroes');
     return this.http.get<Hero[]>(this.heroesUrl)
      .pipe(
-      tap(_ => this.log('fetched heroes')),
+      tap(() => this.log('fetched heroes')),
       catchError(this.handleError<Hero[]>('getHeroes', []))
      );
   }
